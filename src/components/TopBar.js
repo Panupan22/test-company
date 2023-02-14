@@ -60,9 +60,9 @@ function TopBar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <ListItem
-            key={item}
+            key={index}
             disablePadding
             onClick={() => navigate(item.path)}
           >
@@ -100,9 +100,9 @@ function TopBar(props) {
             MUI
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <Button
-                key={item}
+                key={index}
                 sx={{ color: "#fff" }}
                 onClick={() => navigate(item.path)}
               >
