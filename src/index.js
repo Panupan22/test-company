@@ -4,14 +4,19 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { ToastProvider } from "react-toast-notifications";
 
 import "leaflet/dist/leaflet.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <ToastProvider placement="bottom-right">
+        <App />
+      </ToastProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

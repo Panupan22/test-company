@@ -15,33 +15,45 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Outlet, useNavigate } from "react-router-dom";
+import { Badge } from "@mui/material";
 
 const drawerWidth = 240;
 // const navItems = ["Home", "About", "Shop", "Contact"];
-
-const navItems = [
-  {
-    label: "Home",
-    path: "/",
-  },
-  {
-    label: "About",
-    path: "/about",
-  },
-  {
-    label: "Shop",
-    path: "/shop",
-  },
-  {
-    label: "Contact",
-    path: "/contact",
-  },
-];
 
 function TopBar(props) {
   const { window } = props;
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const cart = JSON.parse(localStorage.getItem("cart")) ?? [];
+  const [cartList, setCartList] = React.useState(cart);
+
+  const navItems = [
+    {
+      label: "Home",
+      path: "/",
+      badgeContent: "",
+    },
+    {
+      label: "About",
+      path: "/about",
+      badgeContent: "",
+    },
+    {
+      label: "Shop",
+      path: "/shop",
+      badgeContent: "",
+    },
+    {
+      label: "Contact",
+      path: "/contact",
+      badgeContent: "",
+    },
+    {
+      label: "Cart",
+      path: "/cart",
+      badgeContent: cartList.length ?? 0,
+    },
+  ];
 
   const styles = {
     container: {
@@ -100,15 +112,31 @@ function TopBar(props) {
             MUI
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {navItems.map((item, index) => (
-              <Button
-                key={index}
-                sx={{ color: "#fff" }}
-                onClick={() => navigate(item.path)}
-              >
-                {item.label}
-              </Button>
-            ))}
+            {navItems.map((item, index) => {
+              return item.badgeContent ? (
+                <Badge
+                  badgeContent={item.badgeContent}
+                  color="error"
+                  key={index}
+                >
+                  <Button
+                    key={index}
+                    sx={{ color: "#fff" }}
+                    onClick={() => navigate(item.path)}
+                  >
+                    {item.label}
+                  </Button>
+                </Badge>
+              ) : (
+                <Button
+                  key={index}
+                  sx={{ color: "#fff" }}
+                  onClick={() => navigate(item.path)}
+                >
+                  {item.label}
+                </Button>
+              );
+            })}
           </Box>
         </Toolbar>
       </AppBar>
