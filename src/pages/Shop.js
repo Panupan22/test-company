@@ -13,11 +13,11 @@ import {
   Chip,
   Rating,
 } from "@mui/material";
-import ImageSlider from "../components/ImageSlider";
-import { useToasts } from "react-toast-notifications";
+// import ImageSlider from "../components/ImageSlider";
+// import { useToasts } from "react-toast-notifications";
 
 const Shop = () => {
-  const { addToast } = useToasts();
+  // const { addToast } = useToasts();
   const [products, setProducts] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [productSelected, setProductSelected] = useState(null);
@@ -56,10 +56,10 @@ const Shop = () => {
 
     localStorage.setItem("cart", JSON.stringify(newCart));
 
-    addToast(<p>Already added to cart</p>, {
-      appearance: "success",
-      autoDismiss: true,
-    });
+    // addToast(<p>Already added to cart</p>, {
+    //   appearance: "success",
+    //   autoDismiss: true,
+    // });
   };
 
   const onHandleClickProduct = (item) => {
@@ -89,7 +89,7 @@ const Shop = () => {
       <Box sx={style}>
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <ImageSlider images={productSelected?.images} />
+            {/* <ImageSlider images={productSelected?.images} /> */}
           </Grid>
           <Grid item xs={6}>
             <h1>{productSelected?.title}</h1>
